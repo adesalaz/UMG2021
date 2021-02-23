@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Simulacion de calculadora
  */
 package com.mycompany.calculadora;
 
@@ -9,17 +7,17 @@ import java.util.Scanner;
 
 /**
  *
- * @author alumno
+ * @author Robson Salazar 0900-12-10213
  */
 public class Principal {
     //Método principal
     public static void main(String[] args){
         //Definicion de variables
         String strContinuar = null;
-        //Ciclo
+        //Mantiene ejecución mientras el usuario así lo decida
         do{
             //Escribe el menu
-            System.out.println("Elija una opcion");
+            System.out.println("Dispone de las siguientes opciones:");
             System.out.println("a - Suma");
             System.out.println("b - Resta");
             System.out.println("c - Multiplicacion");
@@ -38,86 +36,87 @@ public class Principal {
                 case "a":
                     strOpcion = "Suma";
                     System.out.println("");
-                    
-                    //Solicitar los valores numericos
+                    //Solicitar los dos valores numericos y los almacena en la posición correspondiente en el vector
                     for (int i=0;i<2;i++){
                         System.out.println("Ingrese el numero "+(i+1)+" : ");
                         fltArrNumeros[i]=objInput.nextFloat();
                     }
-                    
+                    //Opera los números ingresados
                     fltResultado = fltArrNumeros[0]+fltArrNumeros[1];
-                    
-                    //Control
+                    //Indica que no ha ocurrido una excepción
                     blnError = false;
                     //fin case
                     break;
                 case "b":
                     strOpcion = "Resta";
                     System.out.println("");
-                    
-                    //Solicitar los valores numericos
+                    //Solicitar los dos valores numericos y los almacena en la posición correspondiente en el vector
                     for (int i=0;i<2;i++){
                         System.out.println("Ingrese el numero "+(i+1)+" : ");
                         fltArrNumeros[i]=objInput.nextFloat();
                     }
-                    
+                    //Opera los números ingresados
                     fltResultado = fltArrNumeros[0]-fltArrNumeros[1];
-                    
-                    //Control
+                    //Indica que no ha ocurrido una excepción
                     blnError = false;
                     //fin case
                     break;
                 case "c":
                     strOpcion = "Multiplicacion";
                     System.out.println("");
-                    
                     //Solicitar los valores numericos
                     for (int i=0;i<2;i++){
                         System.out.println("Ingrese el numero "+(i+1)+" : ");
                         fltArrNumeros[i]=objInput.nextFloat();
                     }
-                    
+                    //Opera los números ingresados
                     fltResultado = fltArrNumeros[0]*fltArrNumeros[1];
-                    
-                    //Control
+                    //Indica que no ha ocurrido una excepción
                     blnError = false;
                     //fin case
                     break;
                 case "d":
                     strOpcion = "Division";
                     System.out.println("");
-                    
                     //Solicitar los valores numericos
                     for (int i=0;i<2;i++){
                         System.out.println("Ingrese el numero "+(i+1)+" : ");
                         fltArrNumeros[i]=objInput.nextFloat();
                     }
+                    //Valida que el divisor sea mayor a cero
                     if(fltArrNumeros[1] > 0){
+                        //Opera los números ingresados
                         fltResultado = fltArrNumeros[0]/fltArrNumeros[1];
+                        //Indica que no ha ocurrido una excepción
                         blnError = false;
                     }else{
+                        //Si el divisor es cero se controla excepcion
                         System.out.println("No se puede dividir entre cero");
+                        //Indica que ha ocurrido una excepción
                         blnError = true;
                     }
                     //fin case
                     break;
+                //Si la opción ingresada por el usuario no es válida indica que ocurrió una excepcion    
                 default:
+                    //Indica que ha ocurrido una excepción
                     System.out.println("Opcion no valida");
                     blnError = true;
             }
             System.out.println("");
-            //Desplieghe de los datos si no hay error
+            //Despliegue de los cálculos si no hay error
+            //Si existe error lanza mensaje al usuario
             if(blnError==false){
                 System.out.println("La opcion seleccionada es "+strOpcion);
                 System.out.println("El resultado es:"+fltResultado);
             }else if(blnError == true){
                 System.out.println("No se puede realizar la operacion");
             }
+            //Pregunta al usuario si desea continuar con la ejecución
             System.out.println("Desea continuar? S/N");
             //Captura el buffer para continuar
             Scanner objInput2 = new Scanner(System.in);
             strContinuar = objInput2.nextLine();
         }while("s".equals(strContinuar)||"S".equals(strContinuar));
-        
     }
 }
